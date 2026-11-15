@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DAYFORM Digital Studio — thoughtful digital planners and printable tools to help you plan, focus, and grow.">
+  <meta name="theme-color" content="#fff7f7">
+  <title>DAYFORM Digital Studio | Plan. Focus. Grow.</title>
+  <style>
+    :root {
+      --pink: #f3cbd5;
+      --pink-dark: #b96e85;
+      --lavender: #e6def7;
+      --cream: #fffaf1;
+      --ink: #39333c;
+      --muted: #746c76;
+      --white: #fff;
+      --line: #eee5e9;
+      --shadow: 0 14px 40px rgba(88, 62, 78, .08);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: #fffdfc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10; background: rgba(255,253,252,.92);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-weight: 850; letter-spacing: .16em; font-size: 1.08rem; }
+    .brand small { display:block; color:var(--pink-dark); font-size:.58rem; letter-spacing:.22em; font-weight:700; }
+    .navlinks { display:flex; align-items:center; gap:25px; color:var(--muted); font-size:.92rem; }
+    .navlinks a:hover { color:var(--pink-dark); }
+    .nav-cta, .button {
+      display:inline-flex; align-items:center; justify-content:center; border:0; cursor:pointer;
+      border-radius:999px; padding:12px 20px; font-weight:750; font-size:.92rem;
+      background:var(--ink); color:white; transition:transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover, .button:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+    .hero {
+      padding:78px 0 70px;
+      background: radial-gradient(circle at 12% 18%, #fbe5ea 0, transparent 28%),
+                  radial-gradient(circle at 88% 10%, #eee8fb 0, transparent 30%),
+                  linear-gradient(135deg, #fffaf4, #fff8fb 55%, #f8f5ff);
+      overflow:hidden;
+    }
+    .hero-grid { display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:48px; }
+    .eyebrow { color:var(--pink-dark); font-weight:800; letter-spacing:.17em; text-transform:uppercase; font-size:.72rem; }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-size:clamp(3rem, 7vw, 5.2rem); line-height:1.02; font-weight:500; letter-spacing:-.045em; margin:16px 0 20px; }
+    h1 em { color:var(--pink-dark); font-weight:500; }
+    .hero p { color:var(--muted); font-size:1.08rem; max-width:520px; margin:0 0 28px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+    .button.secondary { background:transparent; color:var(--ink); border:1px solid #d9cbd4; }
+    .hero-note { font-size:.82rem; color:var(--muted); margin-top:18px; }
+    .preview { min-height:360px; position:relative; display:grid; place-items:center; }
+    .blob { position:absolute; width:310px; height:310px; border-radius:48% 52% 60% 40%; background:var(--lavender); transform:rotate(-14deg); }
+    .sheet {
+      position:relative; width:min(290px, 85%); padding:25px; background:#fff; border:1px solid #f0e8ed;
+      border-radius:15px; box-shadow:0 24px 55px rgba(76,53,76,.16); transform:rotate(5deg);
+    }
+    .sheet-top { display:flex; justify-content:space-between; color:var(--pink-dark); font-size:.65rem; font-weight:800; letter-spacing:.16em; }
+    .sheet h3 { font-family:Georgia,serif; font-size:1.8rem; font-weight:500; margin:16px 0 12px; }
+    .fake-line { height:8px; border-radius:8px; background:#f3edf1; margin:10px 0; }
+    .fake-line.short { width:62%; }
+    .mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:18px; }
+    .mini-grid span { height:48px; border-radius:8px; background:#fbf0f3; border:1px solid #f4e4e9; }
+    .mini-grid span:nth-child(2n) { background:#f2edfb; border-color:#e8e0f5; }
+    section { padding:76px 0; }
+    .section-head { text-align:center; max-width:620px; margin:0 auto 38px; }
+    .section-head h2 { font-family:Georgia,serif; font-size:clamp(2.1rem,4vw,3rem); font-weight:500; margin:8px 0 10px; }
+    .section-head p { color:var(--muted); margin:0; }
+    .products { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .product {
+      border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:white;
+      box-shadow:0 8px 25px rgba(88,62,78,.035); display:flex; flex-direction:column;
+    }
+    .product-art { min-height:190px; display:grid; place-items:center; padding:22px; background:var(--cream); }
+    .product:nth-child(2) .product-art { background:#f5f0fc; }
+    .product:nth-child(3) .product-art { background:#fff0f3; }
+    .cover {
+      width:135px; min-height:155px; padding:17px 13px; background:white; border-radius:8px;
+      box-shadow:0 10px 22px rgba(75,54,72,.12); transform:rotate(-4deg); text-align:center;
+      border:1px solid #f1e8ed; display:flex; flex-direction:column; justify-content:center;
+    }
+    .cover span { font-size:.52rem; letter-spacing:.18em; color:var(--pink-dark); font-weight:800; }
+    .cover strong { font-family:Georgia,serif; font-size:1.2rem; line-height:1.1; font-weight:500; margin:10px 0; }
+    .cover i { font-style:normal; font-size:.58rem; color:var(--muted); }
+    .product-info { padding:22px; display:flex; flex-direction:column; flex:1; }
+    .product-info h3 { margin:0 0 7px; font-size:1.1rem; }
+    .product-info p { margin:0 0 18px; color:var(--muted); font-size:.92rem; flex:1; }
+    .product-bottom { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .price { font-weight:850; font-size:1.1rem; }
+    .small-link { color:var(--pink-dark); font-weight:800; font-size:.88rem; }
+    .why { background:#fbf8fd; }
+    .benefits { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .benefit { text-align:center; padding:26px 18px; }
+    .icon { width:48px; height:48px; margin:0 auto 14px; border-radius:16px; display:grid; place-items:center; background:var(--lavender); font-size:1.25rem; }
+    .benefit:nth-child(2) .icon { background:#f9e5eb; }
+    .benefit:nth-child(3) .icon { background:#fff0d9; }
+    .benefit h3 { margin:0 0 7px; font-size:1.05rem; }
+    .benefit p { margin:0; color:var(--muted); font-size:.92rem; }
+    .about-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:45px; align-items:center; }
+    .about-art { min-height:260px; border-radius:var(--radius); background:linear-gradient(145deg,#f9e3e9,#eee8fb); display:grid; place-items:center; }
+    .about-art div { width:170px; height:190px; background:#fff; border-radius:12px; box-shadow:var(--shadow); display:grid; place-items:center; text-align:center; padding:20px; transform:rotate(5deg); font-family:Georgia,serif; font-size:1.7rem; }
+    .about-copy h2 { font-family:Georgia,serif; font-size:2.5rem; font-weight:500; line-height:1.1; margin:8px 0 15px; }
+    .about-copy p { color:var(--muted); }
+    .faq { background:var(--cream); }
+    details { max-width:760px; margin:10px auto; padding:18px 20px; border:1px solid #eee5dc; border-radius:14px; background:#fff; }
+    summary { cursor:pointer; font-weight:750; }
+    details p { color:var(--muted); margin:12px 0 0; }
+    .closing { text-align:center; padding:70px 20px; background:linear-gradient(135deg,#f9e7ec,#f0eafa); }
+    .closing h2 { font-family:Georgia,serif; font-weight:500; font-size:clamp(2.1rem,4vw,3.1rem); margin:8px 0 12px; }
+    .closing p { color:var(--muted); margin:0 auto 23px; max-width:500px; }
+    footer { padding:28px 0; color:var(--muted); font-size:.85rem; }
+    .footer-row { display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center; }
+    .notice { font-size:.76rem; color:#817782; }
+    @media (max-width:760px) {
+      .navlinks { gap:13px; font-size:.82rem; }
+      .nav-cta { display:none; }
+      .hero { padding:55px 0 42px; }
+      .hero-grid, .about-grid { grid-template-columns:1fr; gap:25px; }
+      .preview { min-height:300px; }
+      .blob { width:250px; height:250px; }
+      .products { grid-template-columns:1fr; max-width:430px; margin:auto; }
+      .benefits { grid-template-columns:1fr; gap:4px; }
+      section { padding:58px 0; }
+    }
+    @media (max-width:420px) {
+      .wrap { width:calc(100% - 28px); }
+      nav { min-height:64px; }
+      .navlinks { gap:10px; }
+      .navlinks a { font-size:.77rem; }
+      .brand { font-size:.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#home">DAYFORM<small>DIGITAL STUDIO</small></a>
+        <div class="navlinks">
+          <a href="#shop">Shop</a>
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="nav-cta" href="#shop">Explore products</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">A little more clarity, every day</div>
+          <h1>Make space for<br><em>your next chapter.</em></h1>
+          <p>Thoughtful digital planners and printable tools to help you feel organized, stay focused, and make progress at your own pace.</p>
+          <div class="hero-actions">
+            <a class="button" href="#shop">Explore the collection</a>
+            <a class="button secondary" href="#about">Meet DAYFORM</a>
+          </div>
+          <div class="hero-note">Plan. Focus. Grow.</div>
+        </div>
+        <div class="preview" aria-label="Decorative planner preview">
+          <div class="blob"></div>
+          <div class="sheet">
+            <div class="sheet-top"><span>DAYFORM</span><span>01 / PLAN</span></div>
+            <h3>A fresh start.</h3>
+            <div class="fake-line"></div><div class="fake-line"></div><div class="fake-line short"></div>
+            <div class="mini-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div style="margin-top:17px;color:#b96e85;font-size:.65rem;letter-spacing:.13em;font-weight:800">ONE DAY AT A TIME</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The collection</div>
+          <h2>Tools for your everyday</h2>
+          <p>Simple, useful pages designed to make planning feel less overwhelming.</p>
+        </div>
+        <div class="products">
+          <article class="product">
+            <div class="product-art"><div class="cover"><span>DAYFORM</span><strong>Student<br>Planner</strong><i>PLAN YOUR SEMESTER</i></div></div>
+            <div class="product-info">
+              <h3>Ultimate Student Planner</h3>
+              <p>Organize classes, assignments, exams, goals, and weekly plans in one printable planner.</p>
+              <div class="product-bottom"><span class="price">$9.99</span><a class="small-link" href="#availability">View details ↓</a></div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product-art"><div class="cover"><span>DAYFORM</span><strong>Habit<br>Tracker</strong><i>SMALL STEPS, DAILY</i></div></div>
+            <div class="product-info">
+              <h3>Habit Tracker Bundle</h3>
+              <p>A simple set of trackers to help you notice routines, build consistency, and celebrate progress.</p>
+              <div class="product-bottom"><span class="price">$4.99</span><a class="small-link" href="#availability">Coming soon</a></div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product-art"><div class="cover"><span>DAYFORM</span><strong>Study<br>Success</strong><i>FOCUS WITH INTENTION</i></div></div>
+            <div class="product-info">
+              <h3>Study Success Kit</h3>
+              <p>Study-session pages, revision planning, and useful tools for keeping schoolwork on track.</p>
+              <div class="product-bottom"><span class="price">$6.99</span><a class="small-link" href="#availability">Coming soon</a></div>
+            </div>
+          </article>
+        </div>
+        <p id="availability" class="notice" style="text-align:center;margin-top:25px">Product preview only. Store checkout and digital delivery will be added when the shop is ready to launch.</p>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The DAYFORM approach</div>
+          <h2>Less clutter. More clarity.</h2>
+          <p>Good planning should make life feel easier, not give you another thing to worry about.</p>
+        </div>
+        <div class="benefits">
+          <div class="benefit"><div class="icon">✦</div><h3>Easy to use</h3><p>Clear layouts that are simple to understand and easy to make your own.</p></div>
+          <div class="benefit"><div class="icon">♡</div><h3>Made for real life</h3><p>Flexible pages for busy weeks, fresh starts, and everything in between.</p></div>
+          <div class="benefit"><div class="icon">✧</div><h3>Thoughtfully designed</h3><p>Soft colors and calm details, with the focus kept on what matters.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-art"><div>Plan.<br>Focus.<br><span style="color:#b96e85">Grow.</span></div></div>
+        <div class="about-copy">
+          <div class="eyebrow">A note from DAYFORM</div>
+          <h2>A fresh page can change your day.</h2>
+          <p>DAYFORM Digital Studio is built around a simple idea: a little structure can help you make room for the things that matter. Our digital stationery is designed to be practical, approachable, and lovely to use.</p>
+          <p>Start with one page, make a plan that works for you, and take it one day at a time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Good to know</div>
+          <h2>Frequently asked questions</h2>
+          <p>A few quick answers about digital products.</p>
+        </div>
+        <details><summary>What is a digital planner?</summary><p>A digital planner is a downloadable file you can use on a compatible device or print at home. Each product listing will explain its format and what is included.</p></details>
+        <details><summary>Will anything be shipped to me?</summary><p>No physical item is included. DAYFORM products are designed as digital downloads.</p></details>
+        <details><summary>Can I print the pages?</summary><p>Yes, the planner preview is designed for printing on A4 paper. Check each product's listing for its exact page size and format.</p></details>
+        <details><summary>Can I buy products on this website right now?</summary><p>This is the first version of the DAYFORM website and does not have checkout enabled yet. Product information is shown as a preview while the shop is being prepared.</p></details>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="eyebrow">Your next chapter starts here</div>
+      <h2>One page. One plan. One step.</h2>
+      <p>Give your ideas a little space to grow. Find the tools that help you move forward, one day at a time.</p>
+      <a class="button" href="#shop">Explore DAYFORM</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <a class="brand" href="#home">DAYFORM<small>DIGITAL STUDIO</small></a>
+      <span>© <span id="year"></span> DAYFORM Digital Studio</span>
+      <span class="notice">Plan. Focus. Grow.</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
